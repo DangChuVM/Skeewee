@@ -20,7 +20,7 @@ android {
         applicationId "pro.sketchware"
         namespace "pro.sketchware"
         //noinspection ExpiredTargetSdkVersion since we don't target getting Sketchware Pro on Google Play.
-        targetSdkVersion 28
+        targetSdkVersion 34
         minSdkVersion 26
         versionCode 150
         versionName "v7.0.0-SNAPSHOT-" + shortCommitHash
