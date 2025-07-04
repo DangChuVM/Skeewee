@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.transition.TransitionManager;
@@ -130,7 +131,6 @@ public class ExportProjectActivity extends BaseAppCompatActivity implements GitC
         initializeOutputDirectories();
         exportProjectButton.setOnClickListener(v -> showExportOptionsDialog());
 
-        // FIX: Prevent crash on double-click by checking if the dialog is already shown.
         gitConfigureButton.setOnClickListener(v -> {
             if (getSupportFragmentManager().findFragmentByTag("git_config_dialog") == null) {
                 new GitConfigDialogFragment().show(getSupportFragmentManager(), "git_config_dialog");
@@ -234,7 +234,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity implements GitC
                 String username = gitPrefs.getString("git_user", "");
                 String token = gitPrefs.getString("git_pass", "");
                 String email = gitPrefs.getString("git_email", "");
-                String commitMessage = "Sketchware auto-commit";
+                String commitMessage = gitPrefs.getString("git_commit_msg", "Sketchware auto-commit");
 
                 StringBuilder missingConfig = new StringBuilder();
                 if (repoUrl.isEmpty()) missingConfig.append("Repository URL, ");
